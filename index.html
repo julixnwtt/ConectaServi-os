@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConectaServiços — Encontre profissionais com segurança</title>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+<body class="layout-has-fixed-footer">
+  
+  <header id="site-header"></header>
+  <section class="hero-3d py-5 position-relative overflow-hidden">
+    <div class="container">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold lh-1 mb-3 text-gradient-ink">
+            Conectamos você aos melhores profissionais
+          </h1>
+          <p class="lead text-secondary">
+            Plataforma especializada em conectar clientes a prestadores de serviços qualificados e verificados. 
+            Sistema de avaliações transparente para decisões mais seguras.
+          </p>
+          
+          <form class="row g-2 mt-4 card-3d p-3" action="profissionais.html#lista" method="get" novalidate>
+            <div class="col-md-6">
+              <label class="form-label">Categoria</label>
+              <select class="form-select form-3d" id="fCategoria"></select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Cidade</label>
+              <input class="form-control form-3d" name="cidade" placeholder="Ex: Indaiatuba" value="Indaiatuba, SP"/>
+            </div>
+            <div class="col-12 d-flex gap-2">
+              <button class="btn btn-brand btn-3d flex-grow-1" type="submit">
+                Buscar Profissionais
+              </button>
+              <a class="btn btn-outline-brand btn-3d" href="como-funciona.html">
+                Saiba Mais
+              </a>
+            </div>
+          </form>
+          
+          <div class="d-flex align-items-center gap-4 mt-4 small text-secondary">
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-success-subtle text-success border success-pill">Verificado</span>
+              Profissionais checados e aprovados
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-warning-subtle text-warning border warning-pill">Seguro</span>
+              Transações protegidas
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="scene-tilt">
+            <div class="phone-mock card-3d p-0 overflow-hidden">
+              <div class="p-4 bg-ink text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-semibold">ConectaServiços</span>
+                  <span class="badge bg-orange">Novo</span>
+                </div>
+                <p class="mb-0 small opacity-75">
+                  Conectando clientes a profissionais qualificados
+                </p>
+              </div>
+              <div class="p-4">
+                <div class="list-group list-group-flush">
+                  <div class="list-group-item d-flex justify-content-between">
+                    <span>Diarista</span>
+                    <span class="text-orange fw-semibold">a partir de R$ 120</span>
+                  </div>
+                  <div class="list-group-item d-flex justify-content-between">
+                    <span>Jardineiro</span>
+                    <span class="text-orange fw-semibold">a partir de R$ 90</span>
+                  </div>
+                  <div class="list-group-item d-flex justify-content-between">
+                    <span>Programador</span>
+                    <span class="text-orange fw-semibold">por hora</span>
+                  </div>
+                </div>
+                <a href="profissionais.html#lista" class="btn btn-brand btn-3d w-100 mt-3">
+                  Ver profissionais
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="hero-bg-3d"></div>
+    </div>
+  </section>
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card card-3d h-100">
+            <div class="card-body">
+              <h5 class="card-title">Avaliações Verificadas</h5>
+              <p class="card-text">
+                Sistema de avaliações autenticadas para garantir 
+                transparência e confiabilidade nas contratações.
+              </p>
+              <a class="btn btn-brand btn-3d" href="avaliacoes.html">
+                Ver Avaliações
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-3d h-100">
+            <div class="card-body">
+              <h5 class="card-title">Busca Inteligente</h5>
+              <p class="card-text">
+                Encontre profissionais por categoria, localização ou avaliação. 
+                Filtros avançados para encontrar o prestador ideal para sua necessidade.
+              </p>
+              <a class="btn btn-brand btn-3d" href="profissionais.html">
+                Ver Profissionais
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-3d h-100">
+            <div class="card-body">
+              <h5 class="card-title">Como Funciona</h5>
+              <p class="card-text">
+                Processo simples e transparente desde a busca até a contratação. 
+                Conheça todas as etapas da plataforma.
+              </p>
+              <a class="btn btn-brand btn-3d" href="como-funciona.html">
+                Conhecer Processo
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div class="footer-wave"></div>
+      <div class="container footer-main">
+        <div class="row align-items-start g-3">
+          
+          <div class="col-md-4">
+            <div class="footer-brand">
+              <span class="fw-bold">Conecta<span class="text-orange">Serviços</span></span>
+            </div>
+            <p class="mb-1" style="color:#cfe6ff">
+              Conectando clientes a profissionais qualificados
+            </p>
+            <div class="d-flex gap-3 small">
+              <a href="landing-empresa.html#sobre">Sobre</a>
+              <a href="landing-ajuda.html#central">Ajuda</a>
+              <a href="landing-legal.html#termos">Legal</a>
+            </div>
+          </div>
+
+          <div class="col-md-5">
+            <div class="footer-links">
+              <div class="col">
+                <div class="fw-semibold">Explorar</div>
+                <a href="como-funciona.html" class="d-block">Como funciona</a>
+                <a href="profissionais.html" class="d-block">Profissionais</a>
+                <a href="avaliacoes.html" class="d-block">Avaliações</a>
+              </div>
+              <div class="col">
+                <div class="fw-semibold">Cadastros</div>
+                <a href="cadastro-cliente.html" class="d-block">Como Cliente</a>
+                <a href="cadastro-prestador.html" class="d-block">Como Prestador</a>
+              </div>
+              <div class="col">
+                <div class="fw-semibold">Legal</div>
+                <a href="landing-legal.html#termos" class="d-block">Termos</a>
+                <a href="landing-legal.html#privacidade" class="d-block">Privacidade</a>
+                <a href="landing-legal.html#cookies" class="d-block">Cookies</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container d-flex justify-content-between small">
+          <div>© <span id="y"></span> ConectaServiços</div>
+          <div class="d-none d-sm-block">
+            Indaiatuba, SP • Brasil
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        <h4>Uso de Cookies</h4>
+        <p>
+          Utilizamos cookies para melhorar sua experiência de navegação e personalizar conteúdo. 
+          Ao continuar navegando, você concorda com nossa 
+          <a href="landing-legal.html#cookies">Política de Cookies</a>.
+        </p>
+      </div>
+      <div class="cookie-buttons">
+        <button id="btnAcceptCookies" class="btn btn-brand btn-3d">Aceitar</button>
+        <button id="btnDeclineCookies" class="btn btn-outline-brand btn-3d">Recusar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/scripts.js"></script>
+
+</body>
+</html>
