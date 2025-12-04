@@ -13,6 +13,39 @@
   <style>
     * {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      box-sizing: border-box;
+    }
+
+    /* Estilos do Modal de Login */
+    .modal-dialog-centered {
+      display: flex;
+      align-items: center;
+      min-height: calc(100% - 2rem);
+    }
+
+    .modal-content {
+      background: white;
+      border: none;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .modal-body {
+      background: white;
+    }
+
+    .form-control:focus {
+      border-color: #2E5F8F;
+      box-shadow: 0 0 0 0.2rem rgba(46, 95, 143, 0.25);
+    }
+
+    .alert-danger {
+      background-color: #fee;
+      border-color: #fcc;
+      color: #c33;
     }
 
     .cadastro-wrapper {
@@ -295,6 +328,8 @@
     @media (max-width: 576px) {
       .cadastro-card {
         padding: 2rem 1.5rem;
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
       }
       
       .back-btn {
@@ -302,6 +337,120 @@
         left: 1rem;
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
+      }
+
+      .cadastro-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .cadastro-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .icon-header svg {
+        width: 60px;
+        height: 60px;
+      }
+
+      .form-input {
+        font-size: 0.95rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .btn-primary-custom,
+      .btn-secondary-custom {
+        font-size: 0.95rem;
+        padding: 0.875rem 1.5rem;
+      }
+
+      /* Melhorias do Modal de Login */
+      .modal-dialog {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+      }
+
+      .modal-content {
+        border-radius: 16px;
+      }
+
+      .modal-header {
+        padding: 1rem 1.25rem;
+      }
+
+      .modal-body {
+        padding: 1.25rem !important;
+      }
+
+      .modal-title {
+        font-size: 1.25rem;
+      }
+
+      .form-label {
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-control {
+        font-size: 0.95rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .btn {
+        font-size: 0.95rem;
+        padding: 0.75rem 1.25rem;
+      }
+
+      .alert {
+        font-size: 0.875rem;
+        padding: 0.75rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .cadastro-card {
+        padding: 1.5rem 1rem;
+        margin: 0.75rem;
+        max-width: calc(100% - 1.5rem);
+      }
+
+      .cadastro-title {
+        font-size: 1.35rem;
+      }
+
+      .cadastro-subtitle {
+        font-size: 0.85rem;
+      }
+
+      .icon-header svg {
+        width: 50px;
+        height: 50px;
+      }
+
+      .form-input {
+        font-size: 0.875rem;
+        padding: 0.625rem 0.875rem;
+      }
+
+      .btn-primary-custom,
+      .btn-secondary-custom {
+        font-size: 0.875rem;
+        padding: 0.75rem 1.25rem;
+      }
+
+      .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+      }
+
+      .modal-header,
+      .modal-body {
+        padding: 1rem !important;
+      }
+
+      .modal-title {
+        font-size: 1.125rem;
       }
     }
   </style>
