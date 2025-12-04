@@ -61,7 +61,7 @@
             </label>
           </div>
 
-          <button type="submit" class="btn-submit">Cadastrar</button>
+          <button type="submit" class="btn-submit" onclick="console.log('🔴 BOTÃO CLICADO!')">Cadastrar</button>
 
           <div class="login-link">
             Já possui seu cadastro? 
@@ -117,13 +117,15 @@
         // Processa o cadastro do cliente
         const form = document.getElementById('formCliente');
         if (!form) {
-          console.error('Formulário não encontrado!');
+          console.error('❌ Formulário não encontrado!');
           return;
         }
 
+        console.log('✅ Formulário encontrado, adicionando listener...');
+
         form.addEventListener('submit', (e) => {
           e.preventDefault();
-          console.log('Formulário submetido');
+          console.log('🎯 Formulário submetido!');
 
           const formData = new FormData(e.target);
           
