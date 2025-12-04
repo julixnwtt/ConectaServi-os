@@ -158,4 +158,49 @@ router.get('/stats/:prestadorId', (req, res) => {
   });
 });
 
+// DELETE - Deletar avaliação (apenas o autor pode deletar)
+router.delete('/:id', (req, res) => {
+  const usuarioLogado = authRoutes.getUsuarioLogado();
+
+  if (!usuarioLogado) {
+    return res.status(401).json({ error: { message: 'Não autorizado' } });
+  }
+
+  const { id } = req.params;
+  const index = avaliacoes.findIndex(a => a.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: { message: 'Avaliação não encontrada' } });
+  }
+
+  // Apenas o autor da avaliação pode deletá-la
+  if (avaliacoes[index].cliente !== usuarioLogado.id) {
+    return res.status(403).json({ error: { message: 'Você não tem permissão para deletar esta avaliação' } });
+  }
+
+  const avaliacaoRemovida = avaliacoes[index];
+  avaliacoes.splice(index, 1);
+
+  // Atualizar média do prestador após remoção
+  const usuarios = authRoutes.getUsuarios();
+  const prestador = usuarios.find(u => u.id === avaliacaoRemovida.prestador);
+  
+  if (prestador) {
+    const avaliacoesPrestador = avaliacoes.filter(a => a.prestador === avaliacaoRemovida.prestador);
+    if (avaliacoesPrestador.length > 0) {
+      const media = avaliacoesPrestador.reduce((acc, a) => acc + a.nota, 0) / avaliacoesPrestador.length;
+      prestador.avaliacaoMedia = Math.round(media * 10) / 10;
+      prestador.totalAvaliacoes = avaliacoesPrestador.length;
+    } else {
+      prestador.avaliacaoMedia = 0;
+      prestador.totalAvaliacoes = 0;
+    }
+  }
+
+  res.json({
+    success: true,
+    message: 'Avaliação deletada com sucesso'
+  });
+});
+
 module.exports = router;

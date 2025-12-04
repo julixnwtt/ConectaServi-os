@@ -4,77 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Legal — ConectaServiços</title>
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body class="layout-has-fixed-footer">
   <header id="site-header"></header>
-  <main class="py-5">
+  <main class="py-4">
     <div class="container">
-      <nav class="small breadcrumb-ghost">
-        Você está em <a href="index.html">Início</a> › Legal
-      </nav>
       
       <p class="mt-3">
-        <a class="back-home" href="index.html">← Voltar ao início</a>
+        <a class="back-home" href="home.html">← Voltar ao início</a>
       </p>
 
       <section id="termos" class="mb-5">
-        <h1 class="display-4 fw-bold mb-3">📜 Informações Legais</h1>
+        <h1 class="display-4 fw-bold mb-3 text-black">📜 Informações Legais</h1>
         <p class="lead">
           A gente leva a sério sua segurança e privacidade! Aqui você encontra tudo sobre como 
-          protegemos seus dados e garantimos seu direitos.
+          protegemos seus dados e garantimos seus direitos.
         </p>
 
-        <div class="card mb-4">
+        <div class="card card-3d mb-4">
           <div class="card-body">
-            <h2>📝 Termos de Uso</h2>
-            <p>Ao usar o ConectaServiços, você concorda com estes termos. A gente fez tudo pra deixar bem claro:</p>
+            <h2 class="h4 fw-bold mb-3">Termos de Uso e Privacidade</h2>
             
-            <div class="card card-3d">
-              <div class="card-body">
-                <h2 class="h5 fw-bold">Cartilha de Uso Responsável</h2>
-                <ol>
-                  <li>Seja transparente ao combinar preço, prazo e escopo.</li>
-                  <li>Respeite a privacidade e os dados pessoais de todos os usuários.</li>
-                  <li>Evite pagamentos adiantados integrais para serviços longos.</li>
-                  <li>Use avaliações de forma justa, sem ofensas ou difamação.</li>
-                  <li>Denuncie perfis e atividades suspeitas na Central de Ajuda.</li>
-                </ol>
-                
-                <div class="d-flex gap-2 mt-3">
-                  <button id="btnConcordo" class="btn btn-brand btn-3d" type="button">Concordo</button>
-                  <button id="btnDiscordo" class="btn btn-outline-brand btn-3d" type="button">Discordo</button>
-                </div>
-                
-                <p class="small text-secondary mt-2 mb-0">
-                  Sua escolha será salva no seu navegador e usada para habilitar ou bloquear a criação de contas.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="privacidade" class="mb-5">
-        <h2 class="h4 fw-bold mb-3">Termos de Privacidade</h2>
-        <div class="card card-3d">
-          <div class="card-body">
+            <h3 class="h5 fw-semibold mt-4 mb-3">Termos de Uso</h3>
+            <p>Ao usar o ConectaServiços, você concorda com estes termos:</p>
+            <ol>
+              <li>Seja transparente ao combinar preço, prazo e escopo.</li>
+              <li>Respeite a privacidade e os dados pessoais de todos os usuários.</li>
+              <li>Evite pagamentos adiantados integrais para serviços longos.</li>
+              <li>Use avaliações de forma justa, sem ofensas ou difamação.</li>
+              <li>Denuncie perfis e atividades suspeitas na Central de Ajuda.</li>
+            </ol>
+
+            <h3 class="h5 fw-semibold mt-4 mb-3">Política de Privacidade</h3>
             <p>
               Tratamos dados pessoais com base legal, finalidade clara e transparência. 
               Você pode solicitar acesso, correção ou exclusão dos seus dados.
             </p>
-            <ul>
+            <ol>
               <li>Dados coletados: identificação, contato e uso da plataforma;</li>
               <li>Base legal: execução de contrato e legítimo interesse;</li>
               <li>Direitos do titular: acesso, correção, portabilidade e exclusão;</li>
               <li>Compartilhamento: somente quando necessário para prestação do serviço ou cumprimento legal.</li>
-            </ul>
+            </ol>
             
-            <div class="d-flex gap-2 mt-3">
+            <div class="d-flex gap-2 mt-4">
               <button id="btnConcordo" class="btn btn-brand btn-3d" type="button">Concordo</button>
               <button id="btnDiscordo" class="btn btn-outline-brand btn-3d" type="button">Discordo</button>
             </div>
+            
+            <p class="small text-secondary mt-3 mb-0">
+              Sua escolha será salva no seu navegador e usada para habilitar ou bloquear a criação de contas.
+            </p>
           </div>
         </div>
       </section>
@@ -114,9 +100,8 @@
           <div class="footer-brand">
             <span class="fw-bold">Conecta<span class="text-orange">Serviços</span></span>
           </div>
-          <p class="mb-1" style="color:#cfe6ff">Feito com carinho pra conectar pessoas! 💙</p>
+          <p class="mb-1 text-light-blue">Conectando clientes a profissionais qualificados</p>
           <div class="d-flex gap-3 small">
-            <a href="landing-empresa.html#sobre">Sobre</a>
             <a href="landing-ajuda.html#central">Ajuda</a>
             <a href="landing-legal.html#termos">Legal</a>
           </div>
@@ -147,7 +132,7 @@
     <div class="footer-bottom">
       <div class="container d-flex justify-content-between small">
         <div>© <span id="y"></span> ConectaServiços</div>
-        <div class="d-none d-sm-block">Indaiatuba, SP • Feito com <span class="text-orange">❤</span></div>
+        <div class="d-none d-sm-block">Indaiatuba, SP</div>
       </div>
     </div>
   </div>

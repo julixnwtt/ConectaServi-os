@@ -4,23 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ConectaServiços — Profissionais</title>
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/estilos.css">
+  <script src="assets/js/auth-guard.js"></script>
 </head>
 <body class="layout-has-fixed-footer">
   <header id="site-header"></header>
   <main class="py-4">
     <div class="container">
-      <nav class="small breadcrumb-ghost">
-        Você está em <a href="index.html">Início</a> › Profissionais
-      </nav>
-      
-      <p class="mt-3">
-        <a class="back-home" href="index.html">← Voltar pra home</a>
-      </p>
-            <h1 class="display-6 fw-bold mb-3">Profissionais Cadastrados</h1>
-      <p class="text-secondary">
+      <!-- Profissionais -->
+      <h2 class="display-6 fw-bold mb-3 text-black">Profissionais Cadastrados</h2>
+      <p class="text-black">
         Utilize os filtros para encontrar profissionais qualificados em sua região.
       </p>
 
@@ -41,7 +39,7 @@
       </form>
 
       <div id="lista" class="row g-4">
-        <div class="col-md-6 col-xl-4 prof-card" data-cat="Diarista" data-cidade="Indaiatuba">
+        <div class="col-md-6 col-xl-4 prof-card professional-card" data-cat="Diarista" data-category="Diarista" data-cidade="Indaiatuba">
           <article class="card card-3d h-100">
             <div class="card-body d-flex gap-3">
               <div class="avatar-3d bg-ink text-white fw-bold">AL</div>
@@ -58,14 +56,14 @@
                 </div>
                 <div class="mt-3 d-flex gap-2">
                   <a class="btn btn-brand btn-3d" href="avaliacoes.html#ana-lima">Avaliações</a>
-                  <a class="btn btn-outline-brand btn-3d" href="mailto:ana@example.com">E-mail</a>
+                  <button class="btn btn-outline-brand btn-3d btn-avaliar" data-prestador-id="1" data-prestador-nome="Ana Lima">Avaliar</button>
                 </div>
               </div>
             </div>
           </article>
         </div>
 
-        <div class="col-md-6 col-xl-4 prof-card" data-cat="Jardineiro" data-cidade="São Paulo">
+        <div class="col-md-6 col-xl-4 prof-card professional-card" data-cat="Jardineiro" data-category="Jardineiro" data-cidade="São Paulo">
           <article class="card card-3d h-100">
             <div class="card-body d-flex gap-3">
               <div class="avatar-3d bg-ink text-white fw-bold">JP</div>
@@ -82,14 +80,14 @@
                 </div>
                 <div class="mt-3 d-flex gap-2">
                   <a class="btn btn-brand btn-3d" href="avaliacoes.html#joao-pereira">Avaliações</a>
-                  <a class="btn btn-outline-brand btn-3d" href="mailto:joao@example.com">E-mail</a>
+                  <button class="btn btn-outline-brand btn-3d btn-avaliar" data-prestador-id="2" data-prestador-nome="João Pereira">Avaliar</button>
                 </div>
               </div>
             </div>
           </article>
         </div>
 
-        <div class="col-md-6 col-xl-4 prof-card" data-cat="Babá" data-cidade="Curitiba">
+        <div class="col-md-6 col-xl-4 prof-card professional-card" data-cat="Babá" data-category="Babá" data-cidade="Curitiba">
           <article class="card card-3d h-100">
             <div class="card-body d-flex gap-3">
               <div class="avatar-3d bg-ink text-white fw-bold">MS</div>
@@ -106,7 +104,7 @@
                 </div>
                 <div class="mt-3 d-flex gap-2">
                   <a class="btn btn-brand btn-3d" href="avaliacoes.html#mariana-souza">Avaliações</a>
-                  <a class="btn btn-outline-brand btn-3d" href="mailto:mariana@example.com">E-mail</a>
+                  <button class="btn btn-outline-brand btn-3d btn-avaliar" data-prestador-id="3" data-prestador-nome="Mariana Souza">Avaliar</button>
                 </div>
               </div>
             </div>
@@ -123,9 +121,8 @@
           <div class="footer-brand">
             <span class="fw-bold">Conecta<span class="text-orange">Serviços</span></span>
           </div>
-          <p class="mb-1" style="color:#cfe6ff">Feito com carinho pra conectar pessoas! 💙</p>
+          <p class="mb-1 text-steel-blue">Conectando clientes a profissionais qualificados</p>
           <div class="d-flex gap-3 small">
-            <a href="landing-empresa.html#sobre">Sobre</a>
             <a href="landing-ajuda.html#central">Ajuda</a>
             <a href="landing-legal.html#termos">Legal</a>
           </div>
@@ -156,7 +153,7 @@
     <div class="footer-bottom">
       <div class="container d-flex justify-content-between small">
         <div>© <span id="y"></span> ConectaServiços</div>
-        <div class="d-none d-sm-block">Indaiatuba, SP • Feito com <span class="text-orange">❤</span></div>
+        <div class="d-none d-sm-block">Indaiatuba, SP</div>
       </div>
     </div>
   </div>
@@ -173,4 +170,170 @@
     </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="assets/js/scripts.js"></script></body></html>
+
+<!-- Modal de Avaliação -->
+<div class="modal fade" id="modalAvaliacao" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-rounded">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold">Avaliar Profissional</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="text-center mb-4">
+          <h6 id="prestadorNome" class="mb-3"></h6>
+          <p class="text-secondary small">Sua avaliação ajuda outros clientes a tomarem melhores decisões</p>
+        </div>
+        
+        <form id="formAvaliacao">
+          <input type="hidden" id="prestadorId" name="prestador">
+          
+          <!-- Seleção de Estrelas -->
+          <div class="mb-4 text-center">
+            <label class="form-label d-block mb-3">Qual sua nota?</label>
+            <div class="rating-input">
+              <input type="radio" name="nota" value="5" id="star5" required>
+              <label for="star5" title="5 estrelas">★</label>
+              <input type="radio" name="nota" value="4" id="star4">
+              <label for="star4" title="4 estrelas">★</label>
+              <input type="radio" name="nota" value="3" id="star3">
+              <label for="star3" title="3 estrelas">★</label>
+              <input type="radio" name="nota" value="2" id="star2">
+              <label for="star2" title="2 estrelas">★</label>
+              <input type="radio" name="nota" value="1" id="star1">
+              <label for="star1" title="1 estrela">★</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Serviço realizado</label>
+            <input type="text" class="form-control form-3d" name="servico" placeholder="Ex: Limpeza residencial" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Seu comentário</label>
+            <textarea class="form-control form-3d" name="comentario" rows="4" placeholder="Conte como foi sua experiência..." required></textarea>
+          </div>
+
+          <div class="alert alert-danger d-none" id="avaliacaoError"></div>
+          <div class="alert alert-success d-none" id="avaliacaoSuccess"></div>
+
+          <button type="submit" class="btn btn-brand btn-3d w-100">
+            Enviar Avaliação
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.rating-input {
+  direction: rtl;
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.rating-input input {
+  display: none;
+}
+
+.rating-input label {
+  cursor: pointer;
+  font-size: 2.5rem;
+  color: #ddd;
+  transition: color 0.2s;
+}
+
+.rating-input label:hover,
+.rating-input label:hover ~ label,
+.rating-input input:checked ~ label {
+  color: #FFD700;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="assets/js/scripts.js"></script>
+<script>
+
+  // Função para abrir modal de avaliação
+  document.querySelectorAll('.btn-avaliar').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const prestadorId = this.getAttribute('data-prestador-id');
+      const prestadorNome = this.getAttribute('data-prestador-nome');
+      
+      // Verifica se está logado
+      const user = localStorage.getItem('user');
+      if (!user) {
+        alert('Você precisa estar logado para avaliar um profissional');
+        window.location.href = 'cadastro.html';
+        return;
+      }
+
+      const userData = JSON.parse(user);
+      if (userData.tipo !== 'cliente') {
+        alert('Apenas clientes podem avaliar profissionais');
+        return;
+      }
+
+      // Preenche o modal
+      document.getElementById('prestadorId').value = prestadorId;
+      document.getElementById('prestadorNome').textContent = prestadorNome;
+      
+      // Limpa formulário
+      document.getElementById('formAvaliacao').reset();
+      document.getElementById('avaliacaoError').classList.add('d-none');
+      document.getElementById('avaliacaoSuccess').classList.add('d-none');
+      
+      // Abre o modal
+      const modal = new bootstrap.Modal(document.getElementById('modalAvaliacao'));
+      modal.show();
+    });
+  });
+
+  // Processa envio da avaliação
+  document.getElementById('formAvaliacao').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const errorDiv = document.getElementById('avaliacaoError');
+    const successDiv = document.getElementById('avaliacaoSuccess');
+    
+    const dados = {
+      prestador: formData.get('prestador'),
+      nota: parseInt(formData.get('nota')),
+      servico: formData.get('servico'),
+      comentario: formData.get('comentario')
+    };
+
+    try {
+      const response = await fetch('http://localhost:3000/avaliacoes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        successDiv.textContent = 'Avaliação enviada com sucesso!';
+        successDiv.classList.remove('d-none');
+        errorDiv.classList.add('d-none');
+        
+        // Fecha modal após 2 segundos
+        setTimeout(() => {
+          bootstrap.Modal.getInstance(document.getElementById('modalAvaliacao')).hide();
+          location.reload(); // Recarrega para mostrar nova avaliação
+        }, 2000);
+      } else {
+        errorDiv.textContent = data.error?.message || 'Erro ao enviar avaliação';
+        errorDiv.classList.remove('d-none');
+        successDiv.classList.add('d-none');
+      }
+    } catch (error) {
+      errorDiv.textContent = 'Erro de conexão. Verifique se o servidor está rodando.';
+      errorDiv.classList.remove('d-none');
+      successDiv.classList.add('d-none');
+    }
+  });
+</script>
+</body></html>

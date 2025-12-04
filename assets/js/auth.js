@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Senhas estão em texto puro (NUNCA faça isso em produção!)
+// Senhas estão em texto puro 
 let usuarios = [
   {
     id: '1',
@@ -177,6 +177,29 @@ router.get('/me', (req, res) => {
   res.json({
     success: true,
     user: userSemSenha
+  });
+});
+
+// DELETE - Deletar conta de usuário
+router.delete('/conta', (req, res) => {
+  if (!usuarioLogado) {
+    return res.status(401).json({ error: { message: 'Não autorizado' } });
+  }
+
+  const userId = usuarioLogado.id;
+  const index = usuarios.findIndex(u => u.id === userId);
+
+  if (index === -1) {
+    return res.status(404).json({ error: { message: 'Usuário não encontrado' } });
+  }
+
+  // Remove o usuário do array
+  usuarios.splice(index, 1);
+  usuarioLogado = null; // Faz logout
+
+  res.json({
+    success: true,
+    message: 'Conta deletada com sucesso'
   });
 });
 

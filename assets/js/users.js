@@ -38,3 +38,4 @@ router.put('/perfil', (req, res) => {
 });
 
 module.exports = router;
+module.exports.getUsuarioLogado = () => authRoutes.getUsuarioLogado();

@@ -1,11 +1,7 @@
-
-
 (function($){
   'use strict';
   
-  
   const LS = {
-    // Salva qualquer tipo de dado (texto, número, objeto, array)
     set(key, value) {
       try {
         localStorage.setItem(key, JSON.stringify(value));
@@ -15,8 +11,6 @@
         return false;
       }
     },
-    
-    // Recupera dados salvos (se não encontrar, retorna o valor padrão)
     get(key, defaultValue = null) {
       try {
         const value = localStorage.getItem(key);
@@ -26,8 +20,6 @@
         return defaultValue;
       }
     },
-    
-    // Remove um item específico do armazenamento
     remove(key) {
       try {
         localStorage.removeItem(key);
@@ -57,111 +49,135 @@
   const Header = `
 <header class="navbar navbar-expand-lg bg-body sticky-top shadow-sm glass-nav">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-2 brand-3d" href="index.html" aria-label="ConectaServiços - Página inicial">
+    <a class="navbar-brand d-flex align-items-center gap-2 brand-3d" href="home.html" aria-label="ConectaServiços - Página inicial">
       <svg width="38" height="38" viewBox="0 0 64 64" class="logo-svg" role="img" aria-hidden="true">
         <defs>
-          <linearGradient id="blueFace" x1="0" x2="1"><stop offset="0" stop-color="#0F3D62"/><stop offset="1" stop-color="#12527F"/></linearGradient>
-          <linearGradient id="blueSide" x1="0" x2="1"><stop offset="0" stop-color="#0a2640"/><stop offset="1" stop-color="#0d3456"/></linearGradient>
-          <linearGradient id="orangeFace" x1="0" x2="1"><stop offset="0" stop-color="#FF7A00"/><stop offset="1" stop-color="#FF9A3E"/></linearGradient>
-          <filter id="logoDepth" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#0c2f4d" flood-opacity="0.45"/><feDropShadow dx="0" dy="2" stdDeviation="1" flood-color="#000" flood-opacity="0.12"/></filter>
+          <linearGradient id="blueFace" x1="0" x2="1"><stop offset="0" stop-color="#4682B4"/><stop offset="1" stop-color="#008080"/></linearGradient>
+          <linearGradient id="blueSide" x1="0" x2="1"><stop offset="0" stop-color="#2F4F4F"/><stop offset="1" stop-color="#708090"/></linearGradient>
+          <linearGradient id="purpleFace" x1="0" x2="1"><stop offset="0" stop-color="#3A0066"/><stop offset="1" stop-color="#5A4A7A"/></linearGradient>
+          <filter id="logoDepth" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#2F4F4F" flood-opacity="0.45"/><feDropShadow dx="0" dy="2" stdDeviation="1" flood-color="#000" flood-opacity="0.12"/></filter>
           <filter id="specLight" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="blur"/><feSpecularLighting in="blur" surfaceScale="3" specularConstant=".85" specularExponent="20" lighting-color="#ffffff" result="spec"><fePointLight x="-50" y="-40" z="100"/></feSpecularLighting><feComposite in="spec" in2="SourceAlpha" operator="in" result="specOut"/><feMerge><feMergeNode in="specOut"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         </defs>
-        <g filter="url(#logoDepth)"><g transform="translate(1.8,2)" opacity="0.55"><circle cx="18" cy="18" r="8" fill="url(#blueSide)"/><circle cx="46" cy="18" r="8" fill="url(#blueSide)"/><rect x="8" y="30" rx="8" ry="8" width="20" height="20" fill="url(#blueSide)"/><rect x="36" y="30" rx="8" ry="8" width="20" height="20" fill="url(#blueSide)"/><path d="M22,36 A10,10 0 0 1 42,36" fill="none" stroke="#a65211" stroke-width="8" stroke-linecap="round"/></g><g filter="url(#specLight)"><circle cx="18" cy="18" r="8" fill="url(#blueFace)"/><circle cx="46" cy="18" r="8" fill="url(#blueFace)"/><rect x="8" y="30" rx="8" ry="8" width="20" height="20" fill="url(#blueFace)"/><rect x="36" y="30" rx="8" ry="8" width="20" height="20" fill="url(#blueFace)"/><path d="M22,36 A10,10 0 0 1 42,36" fill="none" stroke="url(#orangeFace)" stroke-width="8" stroke-linecap="round"/></g></g>
+        <g filter="url(#logoDepth)"><g transform="translate(1.8,2)" opacity="0.55"><circle cx="18" cy="18" r="8" fill="url(#blueSide)"/><circle cx="46" cy="18" r="8" fill="url(#blueSide)"/><rect x="8" y="30" rx="8" ry="8" width="20" height="20" fill="url(#blueSide)"/><rect x="36" y="30" rx="8" ry="8" width="20" height="20" fill="url(#blueSide)"/><path d="M22,36 A10,10 0 0 1 42,36" fill="none" stroke="#3A0066" stroke-width="8" stroke-linecap="round"/></g><g filter="url(#specLight)"><circle cx="18" cy="18" r="8" fill="url(#blueFace)"/><circle cx="46" cy="18" r="8" fill="url(#blueFace)"/><rect x="8" y="30" rx="8" ry="8" width="20" height="20" fill="url(#blueFace)"/><rect x="36" y="30" rx="8" ry="8" width="20" height="20" fill="url(#blueFace)"/><path d="M22,36 A10,10 0 0 1 42,36" fill="none" stroke="url(#purpleFace)" stroke-width="8" stroke-linecap="round"/></g></g>
       </svg>
       <span class="fw-bold fs-5 brand-text">Conecta<span class="text-orange">Serviços</span><span class="shine"></span></span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-expanded="false" aria-label="Menu de navegação"><span class="navbar-toggler-icon"></span></button>
     <nav id="nav" class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="home.html">Início</a></li>
         <li class="nav-item"><a class="nav-link" href="como-funciona.html">Como funciona</a></li>
-        <li class="nav-item"><a class="nav-link" href="profissionais.html">Categorias</a></li>
-        <li class="nav-item"><a class="nav-link" href="profissionais.html#lista">Profissionais</a></li>
+        <li class="nav-item"><a class="nav-link" href="profissionais.html">Profissionais</a></li>
         <li class="nav-item"><a class="nav-link" href="avaliacoes.html">Avaliações</a></li>
-        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastre-se</a>
-          <ul class="dropdown-menu"><li><a class="dropdown-item" href="cadastro-cliente.html">Como Cliente</a></li><li><a class="dropdown-item" href="cadastro-prestador.html">Como Prestador</a></li></ul>
-        </li>
-        <li class="nav-item"><a class="btn btn-brand btn-3d" href="cadastro-prestador.html">Sou Prestador</a></li>
+        <li class="nav-item" id="userMenuItem"></li>
       </ul>
     </nav>
   </div>
 </header>`;
 
   $(function(){
-    initHeader();              // Injeta o menu de navegação
-    initFooter();              // Coloca o ano atual no rodapé
-    initCategorias();          // Popula os selects de categorias
-    initStars();               // Configura visualização de estrelas
-    initFiltroProfissionais(); // Ativa sistema de busca de profissionais
-    initFiltroAvaliacoes();    // Ativa filtro na página de avaliações
-    initMapa();                // Inicializa mapa interativo (Leaflet)
-    initTermsBanner();         // Banner de aceitação dos termos
-    initForms();               // Auto-save dos formulários
-    initCookieBanner();        // Banner LGPD de cookies
-    initHelpChat();            // Chat de ajuda inteligente
+    initHeader();
+    initFooter();
+    initCategorias();
+    initStars();
+    initFiltroProfissionais();
+    initFiltroAvaliacoes();
+    initMapa();
+    initTermsBanner();
+    initForms();
+    initCookieBanner();
+    initHelpChat();
   });
+
   function initHeader() {
     const $header = $("#site-header");
     if($header.length) {
       $header.replaceWith(Header);
+      
+      const userStr = localStorage.getItem('user');
+      if (userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          const userName = user.nome ? user.nome.split(' ')[0] : 'Usuário';
+          $('#userMenuItem').html(`
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                👤 ${userName}
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="logout(); return false;">Sair</a></li>
+              </ul>
+            </div>
+          `);
+        } catch (e) {
+          console.error('Erro ao processar dados do usuário', e);
+        }
+      } else {
+        $('#userMenuItem').html(`
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cadastre-se
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="cadastro-cliente.html">Como Cliente</a></li>
+              <li><a class="dropdown-item" href="cadastro-prestador.html">Como Prestador</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="cadastro.html">Fazer Login</a></li>
+            </ul>
+          </div>
+        `);
+      }
     }
   }
 
-  
   function initFooter() {
     $('#y').text(new Date().getFullYear());
   }
 
-  
   function initCategorias() {
-    // Selects usados em filtros (páginas de busca)
     const $filtroSelects = $('#fCategoria, #rCategoria');
     $filtroSelects.each(function() {
       const $select = $(this);
-      const currentValue = $select.val(); // Preserva valor já selecionado
+      const currentValue = $select.val();
       $select.empty().append('<option value="">Todas</option>');
       CATEGORIAS.forEach(cat => {
         $select.append(`<option value="${cat}">${cat}</option>`);
       });
-      if(currentValue) $select.val(currentValue); // Restaura seleção
+      if(currentValue) $select.val(currentValue);
     });
 
-    // Selects usados em formulários de cadastro
     const $cadastroSelects = $('select[name="categoria"]');
     $cadastroSelects.each(function() {
       const $select = $(this);
-      const currentValue = $select.val(); // Preserva valor já selecionado
+      const currentValue = $select.val();
       $select.empty().append('<option value="">Selecione</option>');
       CATEGORIAS.forEach(cat => {
         $select.append(`<option value="${cat}">${cat}</option>`);
       });
-      if(currentValue) $select.val(currentValue); // Restaura seleção
+      if(currentValue) $select.val(currentValue);
     });
   }
 
-  
   function initStars() {
     $('.stars').each(function() {
       const $star = $(this);
-      const rating = parseFloat($star.data('stars') || 0); // Ex: 4.7
-      const percentage = Math.max(0, Math.min(100, (rating / 5) * 100)); // Converte para %
+      const rating = parseFloat($star.data('stars') || 0);
+      const percentage = Math.max(0, Math.min(100, (rating / 5) * 100));
       
-      $star.css('--p', percentage + '%') // Define porcentagem de preenchimento
+      $star.css('--p', percentage + '%')
            .attr('title', `${rating.toFixed(1)} de 5 estrelas`)
            .attr('aria-label', `Avaliação: ${rating.toFixed(1)} de 5 estrelas`);
     });
   }
 
-  
   function initFiltroProfissionais() {
     const $btnFiltrar = $('#btnFiltrar');
-    if(!$btnFiltrar.length) return; // Se não existe botão, sai da função
+    if(!$btnFiltrar.length) return;
 
-    // Restaura os filtros que o usuário usou anteriormente
     const savedFilters = LS.get('filtrosProfissionais', {});
     if(savedFilters.categoria) $('#fCategoria').val(savedFilters.categoria);
     if(savedFilters.cidade) $('#fCidade').val(savedFilters.cidade);
 
-    // Função que realmente faz a filtragem dos cards
     function aplicarFiltro() {
       const categoria = ($('#fCategoria').val() || '').toLowerCase().trim();
       const cidade = ($('#fCidade').val() || '').toLowerCase().trim();
@@ -362,7 +378,7 @@
       const accepted = LS.get('cookiesAccepted');
       // null ou undefined = primeira visita
       if(accepted === null || accepted === undefined) {
-        setTimeout(() => $('.cookie-banner').addClass('show'), 500); // Delay de meio segundo
+        $('.cookie-banner').addClass('show'); // Exibe imediatamente ao abrir o site
       }
     }
 
@@ -478,12 +494,6 @@
         renderChat();
       }, 400); // 400ms = menos de meio segundo
     }
-
-    /*
-     * ──────────────────────────────────────────────────────────────
-     * Event Handlers do Chat
-     * ──────────────────────────────────────────────────────────────
-     */
     
     // Botão de enviar mensagem
     $chat.find('button[data-send]').on('click', sendMessage);
@@ -516,22 +526,3 @@
 
 })(jQuery);
 
-/*
- * ════════════════════════════════════════════════════════════════════════════
- * 🎉 FIM DO ARQUIVO scripts.js
- * ════════════════════════════════════════════════════════════════════════════
- * 
- * Tudo pronto! Este arquivo controla a experiência do usuário.
- * Para dúvidas sobre alguma função específica, procure os comentários acima.
- * 
- * 💡 Dica para manutenção: Use Ctrl+F para buscar comentários por emoji:
- *    🔍 → Filtros e buscas
- *    💾 → LocalStorage e salvamento de dados
- *    🎨 → Templates e interface
- *    ⭐ → Sistema de avaliações
- *    🗺️ → Mapa e localização
- *    🍪 → Cookies e LGPD
- *    💬 → Chat de ajuda
- * 
- * ════════════════════════════════════════════════════════════════════════════
- */

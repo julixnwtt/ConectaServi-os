@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoFace" x1="0" x2="1">
+      <stop offset="0" stop-color="#4682B4"/>
+      <stop offset="1" stop-color="#008080"/>
+    </linearGradient>
+    <linearGradient id="purpleSmile" x1="0" x2="1">
+      <stop offset="0" stop-color="#3A0066"/>
+      <stop offset="1" stop-color="#5A4A7A"/>
+    </linearGradient>
+  </defs>
+  <circle cx="18" cy="18" r="8" fill="url(#logoFace)"/>
+  <circle cx="46" cy="18" r="8" fill="url(#logoFace)"/>
+  <rect x="8" y="30" rx="8" ry="8" width="20" height="20" fill="url(#logoFace)"/>
+  <rect x="36" y="30" rx="8" ry="8" width="20" height="20" fill="url(#logoFace)"/>
+  <path d="M22,36 A10,10 0 0 1 42,36" fill="none" stroke="url(#purpleSmile)" stroke-width="8" stroke-linecap="round"/>
+</svg>

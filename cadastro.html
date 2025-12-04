@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro — ConectaServiços</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/estilos.css">
+  <style>
+    * {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .cadastro-wrapper {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #4A7BA7 0%, #2D7A8C 50%, #1F8A8A 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      animation: gradientShift 15s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .cadastro-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: linear-gradient(135deg, rgba(31, 138, 138, 0.3), rgba(45, 122, 140, 0.2));
+      border-radius: 50%;
+      filter: blur(80px);
+    }
+
+    .cadastro-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 450px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      animation: slideUp 0.6s ease-out;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      color: #2E5F8F;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 10;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      background: white;
+    }
+
+    .back-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .icon-header {
+      width: 60px !important;
+      height: 60px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      animation: float 3s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .icon-header:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .icon-header svg {
+      width: 60px !important;
+      height: 60px !important;
+      max-width: 60px !important;
+      max-height: 60px !important;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+    }
+
+    .cadastro-title {
+      text-align: center;
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .cadastro-subtitle {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #2E5F8F;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.875rem 1.25rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: #f8fafc;
+      margin-bottom: 1rem;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #2E5F8F;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(46, 95, 143, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .form-input:hover:not(:focus) {
+      border-color: #cbd5e1;
+    }
+
+    .form-input::placeholder {
+      color: #94a3b8;
+    }
+
+    .btn-primary-custom {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #2E5F8F, #1B3A52);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 128, 128, 0.4);
+      margin-top: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary-custom::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-primary-custom:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 165, 168, 0.5);
+    }
+
+    .btn-primary-custom:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary-custom {
+      width: 100%;
+      padding: 1rem;
+      background: white;
+      color: #1B6F8C;
+      border: 2px solid #1B6F8C;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-top: 0.75rem;
+      position: relative;
+    }
+
+    .btn-secondary-custom:hover {
+      background: #80DEEA;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 96, 100, 0.2);
+    }
+
+    .btn-secondary-custom:active {
+      transform: translateY(0);
+    }
+
+    .link-custom {
+      color: #1B6F8C;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .link-custom::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #2E5F8F;
+      transition: width 0.3s ease;
+    }
+
+    .link-custom:hover {
+      color: #2E5F8F;
+    }
+
+    .link-custom:hover::after {
+      width: 100%;
+    }
+
+    .text-center-custom {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #2E5F8F;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @media (max-width: 576px) {
+      .cadastro-card {
+        padding: 2rem 1.5rem;
+      }
+      
+      .back-btn {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cadastro-wrapper">
+    <!-- Partículas flutuantes -->
+    <div class="particles"></div>
+
+    <div class="cadastro-card">
+      <div class="icon-header">
+        <svg viewBox="0 0 64 64">
+          <defs>
+            <linearGradient id="logoFace" x1="0" x2="1"><stop offset="0" stop-color="#4682B4"/><stop offset="1" stop-color="#008080"/></linearGradient>
+            <linearGradient id="purpleSmile" x1="0" x2="1"><stop offset="0" stop-color="#3A0066"/><stop offset="1" stop-color="#5A4A7A"/></linearGradient>
+          </defs>
+          <circle cx="18" cy="18" r="8" fill="url(#logoFace)"/>
+          <circle cx="46" cy="18" r="8" fill="url(#logoFace)"/>
+          <rect x="8" y="30" rx="8" ry="8" width="20" height="20" fill="url(#logoFace)"/>
+          <rect x="36" y="30" rx="8" ry="8" width="20" height="20" fill="url(#logoFace)"/>
+          <path d="M22,36 A10,10 0 0 1 42,36" fill="none" stroke="url(#purpleSmile)" stroke-width="8" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h1 class="cadastro-title text-black">Bem-vindo ao ConectaServiços</h1>
+      <p class="cadastro-subtitle">Escolha como deseja se cadastrar</p>
+
+      <form id="formEscolha">
+        <input type="text" class="form-input" placeholder="Digite seu nome" id="nome">
+        <input type="email" class="form-input" placeholder="Digite seu email" id="email">
+        <input type="tel" class="form-input" placeholder="Digite seu telefone" id="telefone">
+
+        <button type="button" class="btn-primary-custom" onclick="window.location.href='cadastro-prestador.html'">
+          Cadastrar como Prestador
+        </button>
+
+        <button type="button" class="btn-secondary-custom" onclick="window.location.href='cadastro-cliente.html'">
+          Cadastrar como Cliente
+        </button>
+
+        <p class="text-center-custom">
+          Já tem uma conta? 
+          <a href="#" class="link-custom" id="btnLogin">Fazer login</a>
+        </p>
+
+        <p class="text-center-custom">
+          <a href="home.html" class="link-custom">Continuar sem cadastro →</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Login -->
+  <div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-rounded">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="formLogin">
+            <div class="mb-3">
+              <label class="form-label">E-mail</label>
+              <input type="email" class="form-control form-3d" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Senha</label>
+              <input type="password" class="form-control form-3d" name="senha" required>
+            </div>
+            <div class="alert alert-danger d-none" id="loginError"></div>
+            <button type="submit" class="btn btn-brand btn-3d w-100">
+              Entrar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/auth-local.js"></script>
+  <script src="assets/js/scripts.js"></script>
+  <script>
+    // Abre o modal de login
+    document.getElementById('btnLogin').addEventListener('click', (e) => {
+      e.preventDefault();
+      const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+      modal.show();
+    });
+
+    // Processa o login
+    document.getElementById('formLogin').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const email = formData.get('email');
+      const senha = formData.get('senha');
+      const errorDiv = document.getElementById('loginError');
+
+      const resultado = AuthLocal.login(email, senha);
+
+      if (resultado.success) {
+        window.location.href = 'home.html';
+      } else {
+        errorDiv.textContent = resultado.error?.message || 'Erro ao fazer login';
+        errorDiv.classList.remove('d-none');
+      }
+    });
+
+    // Efeitos visuais interativos
+    document.addEventListener('DOMContentLoaded', () => {
+      // Efeito de partículas flutuantes no background
+      const particlesContainer = document.querySelector('.particles');
+      for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'absolute';
+        particle.style.width = Math.random() * 6 + 3 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.background = 'rgba(255, 255, 255, 0.3)';
+        particle.style.borderRadius = '50%';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animation = `floatParticle ${Math.random() * 10 + 10}s linear infinite`;
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particlesContainer.appendChild(particle);
+      }
+
+      // Adicionar animação de partículas
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes floatParticle {
+          0% {
+            transform: translateY(0) translateX(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 0.5;
+          }
+          90% {
+            opacity: 0.5;
+          }
+          100% {
+            transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Efeito de foco nos inputs
+      const inputs = document.querySelectorAll('.form-input');
+      inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+          this.parentElement.style.transform = 'scale(1.02)';
+          this.parentElement.style.transition = 'transform 0.3s ease';
+        });
+        
+        input.addEventListener('blur', function() {
+          this.parentElement.style.transform = 'scale(1)';
+        });
+
+        // Animação de digitação
+        input.addEventListener('input', function() {
+          this.style.animation = 'pulse 0.3s ease';
+          setTimeout(() => {
+            this.style.animation = '';
+          }, 300);
+        });
+      });
+
+      // Efeito ripple nos botões
+      const buttons = document.querySelectorAll('.btn-primary-custom, .btn-secondary-custom');
+      buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          const rect = this.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const ripple = document.createElement('span');
+          ripple.style.position = 'absolute';
+          ripple.style.left = x + 'px';
+          ripple.style.top = y + 'px';
+          ripple.style.width = '0';
+          ripple.style.height = '0';
+          ripple.style.borderRadius = '50%';
+          ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+          ripple.style.transform = 'translate(-50%, -50%)';
+          ripple.style.animation = 'rippleEffect 0.6s ease-out';
+          
+          this.appendChild(ripple);
+          
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+
+      // Adicionar animação ripple
+      const rippleStyle = document.createElement('style');
+      rippleStyle.textContent = `
+        @keyframes rippleEffect {
+          to {
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+          }
+        }
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.02); }
+        }
+      `;
+      document.head.appendChild(rippleStyle);
+
+      // Validação visual em tempo real
+      inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+          if (this.value.trim() !== '') {
+            this.style.borderColor = '#2E8B9E';
+            this.style.background = '#f0fdfa';
+          } else if (this.hasAttribute('required')) {
+            this.style.borderColor = '#ef4444';
+            this.style.background = '#fef2f2';
+          }
+        });
+
+        input.addEventListener('focus', function() {
+          this.style.borderColor = '#2E8B9E';
+          this.style.background = 'white';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
