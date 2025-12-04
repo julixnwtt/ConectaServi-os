@@ -1,6 +1,23 @@
 // Sistema de autenticação LOCAL (sem servidor)
 // Usa apenas LocalStorage do navegador
 
+// Verifica se localStorage está disponível
+function isLocalStorageAvailable() {
+  try {
+    const test = '__localStorage_test__';
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    console.error('localStorage não está disponível:', e);
+    return false;
+  }
+}
+
+if (!isLocalStorageAvailable()) {
+  alert('ERRO: Seu navegador não suporta localStorage. O sistema de login não funcionará.');
+}
+
 const AuthLocal = {
   // Dados iniciais de usuários (apenas para demonstração)
   usuarios: [
@@ -96,19 +113,41 @@ const AuthLocal = {
 
   // Inicializa o sistema
   init() {
+    console.log('🔵 AuthLocal.init() chamado');
+    console.log('🔵 URL atual:', window.location.href);
+    
+    if (!isLocalStorageAvailable()) {
+      console.error('❌ localStorage NÃO disponível!');
+      return;
+    }
+    
     try {
       const usuariosExistentes = localStorage.getItem('usuarios');
+      console.log('🔵 Usuários existentes no localStorage:', usuariosExistentes ? 'SIM' : 'NÃO');
+      
       if (!usuariosExistentes || usuariosExistentes === 'null' || usuariosExistentes === '[]') {
-        console.log('Inicializando usuarios no localStorage');
+        console.log('🟢 Inicializando usuarios no localStorage...');
         localStorage.setItem('usuarios', JSON.stringify(this.usuarios));
-        console.log('Usuários inicializados:', this.usuarios.length);
+        console.log('✅ Usuários inicializados:', this.usuarios.length);
+        
+        // Verificação
+        const verificacao = localStorage.getItem('usuarios');
+        console.log('🔍 Verificação: dados foram salvos?', verificacao !== null);
       } else {
         const usuarios = JSON.parse(usuariosExistentes);
-        console.log('Usuarios já existem no localStorage:', usuarios.length);
+        console.log('✅ Usuarios já existem no localStorage:', usuarios.length);
+        if (usuarios.length > 0) {
+          console.log('📧 Emails cadastrados:', usuarios.map(u => u.email).join(', '));
+        }
       }
     } catch (error) {
-      console.error('Erro ao inicializar localStorage:', error);
-      localStorage.setItem('usuarios', JSON.stringify(this.usuarios));
+      console.error('❌ Erro ao inicializar localStorage:', error);
+      try {
+        localStorage.setItem('usuarios', JSON.stringify(this.usuarios));
+        console.log('🔄 Tentativa de recuperação bem-sucedida');
+      } catch (e) {
+        console.error('❌ Falha na recuperação:', e);
+      }
     }
   },
 
@@ -150,23 +189,34 @@ const AuthLocal = {
 
   // Registra novo usuário
   registro(dados) {
-    console.log('=== INICIANDO REGISTRO ===');
-    console.log('AuthLocal.registro chamado com:', dados);
+    console.log('=== 🔵 INICIANDO REGISTRO ===');
+    console.log('📝 Dados recebidos:', {
+      nome: dados.nome,
+      email: dados.email,
+      tipo: dados.tipo,
+      telefone: dados.telefone ? 'SIM' : 'NÃO',
+      senha: dados.senha ? 'SIM' : 'NÃO'
+    });
     
     try {
       const usuarios = this.getUsuarios();
-      console.log('Usuários atuais:', usuarios.length);
+      console.log('👥 Usuários atuais no sistema:', usuarios.length);
 
       // Valida campos obrigatórios
       if (!dados.nome || !dados.email || !dados.senha || !dados.tipo) {
-        console.log('Erro: Campos obrigatórios faltando');
+        console.error('❌ Campos obrigatórios faltando:', {
+          nome: !!dados.nome,
+          email: !!dados.email,
+          senha: !!dados.senha,
+          tipo: !!dados.tipo
+        });
         return { success: false, error: { message: 'Campos obrigatórios faltando' } };
       }
 
       // Verifica se email já existe
-      const emailExiste = usuarios.find(u => u.email === dados.email);
+      const emailExiste = usuarios.find(u => u.email.toLowerCase() === dados.email.toLowerCase());
       if (emailExiste) {
-        console.log('Email já cadastrado:', dados.email);
+        console.warn('⚠️ Email já cadastrado:', dados.email);
         return { success: false, error: { message: 'Email já cadastrado' } };
       }
 
@@ -190,22 +240,28 @@ const AuthLocal = {
         })
       };
 
-      console.log('Novo usuário criado:', novoUsuario);
+      console.log('✨ Novo usuário criado:', {
+        id: novoUsuario.id,
+        nome: novoUsuario.nome,
+        email: novoUsuario.email,
+        tipo: novoUsuario.tipo
+      });
       
       // Adiciona à lista
       usuarios.push(novoUsuario);
-      console.log('Usuário adicionado à array. Total:', usuarios.length);
+      console.log('➕ Usuário adicionado à array. Total:', usuarios.length);
       
       // Salva no localStorage
       this.setUsuarios(usuarios);
       
       // Verifica se foi salvo
       const usuariosDepois = this.getUsuarios();
-      console.log('Usuários após salvar:', usuariosDepois.length);
+      console.log('🔍 Usuários após salvar:', usuariosDepois.length);
       
       if (usuariosDepois.length !== usuarios.length) {
-        console.error('ERRO: Usuário não foi salvo corretamente!');
-        return { success: false, error: { message: 'Erro ao salvar usuário' } };
+        console.error('❌ ERRO CRÍTICO: Usuário NÃO foi salvo!');
+        console.error('Esperado:', usuarios.length, 'Atual:', usuariosDepois.length);
+        return { success: false, error: { message: 'Erro ao salvar usuário no localStorage' } };
       }
 
       // Faz login automático
@@ -214,12 +270,15 @@ const AuthLocal = {
       
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(userSemSenha));
-      console.log('Login automático realizado. Token:', token);
-      console.log('=== REGISTRO CONCLUÍDO COM SUCESSO ===');
+      
+      console.log('🔑 Token gerado e salvo:', token);
+      console.log('👤 User salvo (sem senha)');
+      console.log('=== ✅ REGISTRO CONCLUÍDO COM SUCESSO ===');
 
       return { success: true, token, user: userSemSenha };
     } catch (error) {
-      console.error('ERRO ao registrar usuário:', error);
+      console.error('❌ ERRO FATAL ao registrar:', error);
+      console.error('Stack:', error.stack);
       return { success: false, error: { message: 'Erro ao processar registro: ' + error.message } };
     }
   },
